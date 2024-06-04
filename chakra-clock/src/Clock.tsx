@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Card, CardBody, Image, Text, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 export const Clock = () => {
@@ -23,9 +23,22 @@ export const Clock = () => {
   });
 
   return (
-    <Box>
-      <Text>{time}</Text>
-      <Text>{date}</Text>
-    </Box>
+    <VStack bg="cyan.900" width={400} h={200}>
+      <Card>
+        <CardBody>
+          <Text>カードの中の文字列</Text>
+        </CardBody>
+      </Card>
+      <Text fontSize="60pt" color="cyan.50">
+        {time}
+      </Text>
+      <Text fontSize="20pt" color="cyan.50">
+        {date}
+      </Text>
+      <Image
+        src="https://live.staticflickr.com/65535/53768376006_77fc433c53_h.jpg"
+        alt="海の写真"
+      />
+    </VStack>
   );
 };
