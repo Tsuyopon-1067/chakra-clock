@@ -1,4 +1,4 @@
-import { Card, CardBody, Image, Text, VStack } from "@chakra-ui/react";
+import { Image, Text, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 export const Clock = () => {
@@ -24,11 +24,6 @@ export const Clock = () => {
 
   return (
     <VStack bg="cyan.900" width={400} h={200}>
-      <Card>
-        <CardBody>
-          <Text>カードの中の文字列</Text>
-        </CardBody>
-      </Card>
       <Text fontSize="60pt" color="cyan.50">
         {time}
       </Text>
