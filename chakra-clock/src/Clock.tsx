@@ -23,7 +23,7 @@ export const Clock = () => {
   });
 
   return (
-    <VStack bg="cyan.900" width={400} h={200}>
+    <VStack bg="cyan.900" width={400}>
       <Text fontSize="60pt" color="cyan.50">
         {time}
       </Text>

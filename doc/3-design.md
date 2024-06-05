@@ -66,8 +66,9 @@
 
 ## 4.画像の挿入
 `Image`を使う．`src`はurl，`alt`は画像が読み込まれない場合に表示する予備テキスト．無くても動くが必須とされている．
+このとき，`Image`要素分縦に大きくなるので，VStackのheight指定の数値を大きくして調節するかheightしていを削除する必要がある．`VStack`の`bg`を目立つ色にするとわかりやすい．
 ```tsx
-<VStack bg="cyan.900" width={400} h={200}>
+<VStack bg="cyan.900" width={400}>
   <Text fontSize="60pt" color="cyan.50">
     {time}
   </Text>
