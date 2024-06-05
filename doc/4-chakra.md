@@ -137,3 +137,162 @@ function App() {
   </AccordionItem>
 </Accordion>
 ```
+
+## Modal
+`Modal`は子ウィンドウであり，それを閉じるまでは親ウィンドウの操作をできなくする．`Modal`の追加のためには，[`useDisclosure`](https://v2.chakra-ui.com/docs/hooks/use-disclosure)というHooksが必要．これを`return`文の前に挿入する．`useDisclosure`については，ChakraUIが提供する便利機能くらいの理解で問題無い．
+```
+const { isOpen, onOpen, onClose } = useDisclosure()
+```
+
+`useDisclosure`を挿入したら，以下のコードを`</Accordion>`の下に追加する．
+
+コードは[公式ドキュメントのModalページ](https://v2.chakra-ui.com/docs/components/modal/usage)のUsage節のものを改変した．
+
+```tsx
+<Button margin={6} onClick={onOpen}>
+  Open Modal
+</Button>
+<Modal isOpen={isOpen} onClose={onClose}>
+  <ModalOverlay />
+  <ModalContent>
+    <ModalHeader>Modal Title</ModalHeader>
+    <ModalCloseButton />
+    <ModalBody>hogehoge</ModalBody>
+
+    <ModalFooter>
+      <Button colorScheme="blue" mr={3} onClick={onClose}>
+        Close
+      </Button>
+      <Button variant="ghost">Secondary Action</Button>
+    </ModalFooter>
+  </ModalContent>
+</Modal>
+```
+
+`ModalContent`の中を編集すればコンテンツを編集できる．`Card`のように`ModalHeader`・`ModalBody`・`ModalFooter`に分かれているので，必要な箇所を編集する．ここでは，`ModalBody`の中に`Clock`を入れる．
+```tsx
+<Modal isOpen={isOpen} onClose={onClose}>
+  <ModalOverlay />
+  <ModalContent>
+    <ModalHeader>Modal Title</ModalHeader>
+    <ModalCloseButton />
+    <ModalBody>
+      <Clock />
+    </ModalBody>
+
+    <ModalFooter>
+      <Button colorScheme="blue" mr={3} onClick={onClose}>
+        Close
+      </Button>
+      <Button variant="ghost">Secondary Action</Button>
+    </ModalFooter>
+  </ModalContent>
+</Modal>
+```
+
+このように書き換えると，ボタンを押したとき，モーダルウィンドウ中に時計が表示されていることがわかる．
+
+## コンポーネント化の威力
+ここでは色々なところに時計を配置するという実用的には意味が無いことをしたが，大事なことはコンポーネント化により1行のコードで時計が配置できるということ．コンポーネント化に慣れたらコード量を減らしながら複雑なUIを実装できるようになるので頑張って習得してほしい．
+
+最後にこの章での実装例として`App.tsx`の全体を示す．
+```tsx
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Heading,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
+} from "@chakra-ui/react";
+import { Clock } from "./Clock";
+
+function App() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  return (
+    <>
+      <Card margin={6}>
+        {" "}
+        <CardHeader>
+          <Heading size="md"> Title1</Heading>
+        </CardHeader>
+        <CardBody>
+          <Clock />
+        </CardBody>
+        <CardFooter>
+          <Button>button</Button>
+        </CardFooter>
+      </Card>
+      <Accordion allowToggle margin={6}>
+        <AccordionItem>
+          <h2>
+            <AccordionButton>
+              <Box as="span" flex="1" textAlign="left">
+                Section 1 title
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4}>
+            <Clock />
+          </AccordionPanel>
+        </AccordionItem>
+
+        <AccordionItem>
+          <h2>
+            <AccordionButton>
+              <Box as="span" flex="1" textAlign="left">
+                Section 2 title
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+      <Button margin={6} onClick={onOpen}>
+        Open Modal
+      </Button>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Clock />
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+}
+
+export default App;
+
+```
