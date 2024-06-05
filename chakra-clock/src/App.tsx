@@ -11,10 +11,19 @@ import {
   CardFooter,
   CardHeader,
   Heading,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { Clock } from "./Clock";
 
 function App() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <Card margin={6}>
@@ -61,6 +70,26 @@ function App() {
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
+      <Button margin={6} onClick={onOpen}>
+        Open Modal
+      </Button>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Clock />
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 }
