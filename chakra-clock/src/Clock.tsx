@@ -18,7 +18,7 @@ export const Clock = () => {
       if (dateStr !== date) {
         setDate(dateStr);
       }
-    }, 1000);
+    }, 50);
     return () => clearInterval(clockInterval);
   });
 
