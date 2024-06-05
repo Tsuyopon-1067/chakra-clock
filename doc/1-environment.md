@@ -16,11 +16,16 @@ npm create vite
 cd chakra-clock
 npm install
 ```
+`npm install`は`npm i`でも同じことができる．インターネット上の記事では人によって使うコマンドが違ったりするので，両方知っておいた方が良い．特に`npm i`は`npm install`と違って知識0からの意味推測は困難なので軽くで良いので頭に入れておくと後々楽．
 
 ## 3. Chakra UIのインストール
 [公式ドキュメントのGetStarted](https://v2.chakra-ui.com/getting-started)のInstallationに書いている．
 ```
 npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+```
+[Icon](https://v2.chakra-ui.com/docs/components/icon/usage)もインストールしておく．
+```
+npm i @chakra-ui/icons
 ```
 
 ## 4. ReactでChakra UIを使えるようにする
